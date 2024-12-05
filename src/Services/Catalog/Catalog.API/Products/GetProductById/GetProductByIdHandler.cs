@@ -1,4 +1,6 @@
 ﻿
+using BuildingBlocks.Exceptions;
+
 namespace Catalog.API.Products.GetProductById
 {
     public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResult>;
@@ -12,7 +14,7 @@ namespace Catalog.API.Products.GetProductById
 
             if(product is null)
             {
-                throw new ProductNotFoundException();
+                throw new ProductNotFoundException(query.Id);
             }
 
             return new GetProductByIdResult(product);
