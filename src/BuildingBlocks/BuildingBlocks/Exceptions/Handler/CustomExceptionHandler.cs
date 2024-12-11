@@ -23,8 +23,11 @@ namespace BuildingBlocks.Exceptions.Handler
                 FluentValidation.ValidationException => (
                 exception.Message, exception.GetType().Name, context.Response.StatusCode = StatusCodes.Status400BadRequest),
                 BadRequestException => (exception.Message, exception.GetType().Name, context.Response.StatusCode = StatusCodes.Status400BadRequest),
+                
+                OrderNotFoundException => (exception.Message, exception.GetType().Name, context.Response.StatusCode = StatusCodes.Status404NotFound),
                 NotFoundException => (exception.Message, exception.GetType().Name, context.Response.StatusCode = StatusCodes.Status404NotFound),
                 _ => throw new NotImplementedException()
+
             };
 
             var problemDetails = new ProblemDetails
