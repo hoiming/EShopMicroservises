@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BuildingBlocks.Behaviors;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace Ordering.Application
     {
         public static IServiceCollection AddApplicationSerivce(this IServiceCollection services)
         {
-            services.AddMediatR(cfg =>
+            services.AddMediatR(config =>
             {
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                config.AddOpenBehavior(typeof(ValidationBehaviors<,>));
+                config.AddOpenBehavior(typeof(LoggingBehavior<,>));
             });
             return services;
         }
