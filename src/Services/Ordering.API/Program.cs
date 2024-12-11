@@ -5,7 +5,7 @@ using Ordering.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddApplicationSerivce()
+builder.Services.AddApplicationSerivce(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices(builder.Configuration) ;
 

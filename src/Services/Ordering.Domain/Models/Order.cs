@@ -56,7 +56,7 @@ namespace Ordering.Domain.Models
             Payment = payment;
             Status = orderStatus;
 
-            AddDomainEvent(new OrderUpdatedEvent(this));
+            AddDomainEvent(new OrderCreatedEvent(this));
         }
 
         public void Add(ProductId productId, int quantity, decimal price)
